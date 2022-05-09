@@ -9,25 +9,43 @@ namespace HomeWork6
         {
             Console.WriteLine(text);
         }
-        public static void WriteToFile(string fileName,string s)
+        public static void WriteToFile(string fileName, string s)
         {
-            string[] elem = s.Split('#');
             bool flag = File.Exists(fileName);
             if (flag)
             {
                 Output("File already exists ");
-                File.AppendAllLines(fileName, elem);
+                File.AppendAllText(fileName, s);
             }
             else
             {
                 Output("File will be created ");
-                File.AppendAllLines(fileName, elem);
+                File.AppendAllText(fileName, s);
             }
             if (File.Exists(fileName))
             {
                 Output("File is created ");
             }
         }
+        //public static void WriteToFile(string fileName,string s)
+        //{
+        //    string[] elem = s.Split('#');
+        //    bool flag = File.Exists(fileName);
+        //    if (flag)
+        //    {
+        //        Output("File already exists ");
+        //        File.AppendAllLines(fileName, elem);
+        //    }
+        //    else
+        //    {
+        //        Output("File will be created ");
+        //        File.AppendAllLines(fileName, elem);
+        //    }
+        //    if (File.Exists(fileName))
+        //    {
+        //        Output("File is created ");
+        //    }
+        //}
         public static string ReadFromFile(string fileName)
         {
             string [] lines = File.ReadAllLines(fileName);
