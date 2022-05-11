@@ -11,134 +11,60 @@ namespace HomeWork6
         }
         public static void WriteToFile(string fileName, string s)
         {
-            bool flag = File.Exists(fileName);
-            if (flag)
+            File.AppendAllText(fileName, $"{s}\n");
+        }
+        public static string ReadFromFile(string fileName)
+        {
+            if (File.Exists(fileName))
             {
-                Output("File already exists ");
-                File.AppendAllText(fileName, s);
+                return File.ReadAllText(fileName);
             }
             else
             {
-                Output("File will be created ");
-                File.AppendAllText(fileName, s);
-            }
-            if (File.Exists(fileName))
-            {
-                Output("File is created ");
+                return "";
             }
         }
-        //public static void WriteToFile(string fileName,string s)
-        //{
-        //    string[] elem = s.Split('#');
-        //    bool flag = File.Exists(fileName);
-        //    if (flag)
-        //    {
-        //        Output("File already exists ");
-        //        File.AppendAllLines(fileName, elem);
-        //    }
-        //    else
-        //    {
-        //        Output("File will be created ");
-        //        File.AppendAllLines(fileName, elem);
-        //    }
-        //    if (File.Exists(fileName))
-        //    {
-        //        Output("File is created ");
-        //    }
-        //}
-        public static string ReadFromFile(string fileName)
+        public static void WriteEmployee(string newEmployee)
         {
-            string [] lines = File.ReadAllLines(fileName);
-            foreach(var line in lines)
-            {
-                Output($"{line }"); 
-            }
-            return lines[0];
+            string fileName = "datebase.txt";
+            WriteToFile(fileName, newEmployee);
         }
         static void Main(string[] args)
         {
-            Output("Please enter full name of emloyee: ");
             string fileName = "database.txt";
-            string s = Console.ReadLine();
-            WriteToFile(fileName, s);
-            ReadFromFile(fileName);
-        }
-        //public static void Message()
-        //{
-        //    Console.Write("If you want to add more employees enter 2, to read database please enter 1, to exit please press 0: \n");
-        //}
-        //public static void Reading()
-        //{
-        //    string[] lines = File.ReadAllLines("database.txt");
-        //    foreach (var line in lines)
-        //    {
-        //        string[] elems = line.Split(new[] { '#' }, StringSplitOptions.RemoveEmptyEntries);
-        //        foreach (string elem in elems)
-        //        {
-        //            Output($"{elem} ");
-        //        }
-        //    }
-        //    Message();
-        //    Writing(Console.ReadLine());
-        //}
-        //public static void Read()
-        //{
-        //    using (StreamReader reader = new StreamReader("database.txt"))
-        //    {
 
-        //        while(!reader.EndOfStream)
-        //        {
-        //            string []line = reader.ReadLine().Split('#');
-        //            foreach (var elem in line)
-        //            {
-        //                Output(elem);
-        //            }
-        //        }
-        //    }
-        //}
-        //public static void Writing(string key)
-        //{
-        //    {
-        //        using (StreamWriter stream = new StreamWriter("datebase.txt"))
-        //        {
-        //            while (key == $"{2}")
-        //            {
-        //                string newEmployee = string.Empty;
-        //                Output("Please write ID of new employee: ");
-        //                newEmployee += $"{Console.ReadLine()}#";
-        //                string now = DateTime.Now.ToString();
-        //                newEmployee += $"{now}#";
-        //                Output("Please enter full name of new employee: ");
-        //                newEmployee += $"{Console.ReadLine().Trim()}#";
-        //                Output("Enter the age of employee: ");
-        //                newEmployee += $"{Console.ReadLine()}#";
-        //                Output("Enter height of new emloyer: ");
-        //                newEmployee += $"{Console.ReadLine()}#";
-        //                Output("Please enter day, month and year of birth: ");
-        //                DateTime dateOfBirth = Convert.ToDateTime(Console.ReadLine());
-        //                newEmployee += $"{dateOfBirth}#";
-        //                Output("Please enter place of birth: ");
-        //                newEmployee += $"{Console.ReadLine()}#";
-        //                stream.WriteLine(newEmployee);
-        //                Message();
-        //                key = Console.ReadLine();
-        //            }
-        //        }
-        //    }
-        //}
-        //static void Main(string[] args)
-        //{
-        //    Output("If you want to add more employees enter 2, to read database please enter 1, to exit please press 0: \n");
-        //    string key = Console.ReadLine();
-        //    while (true)
-        //    {
-        //        switch (int.Parse(key))
-        //        {
-        //            case 0: Output("Program is exterminated by user \n"); break;
-        //            case 1: Read(); ; break;
-        //            case 2: Writing(key); break;
-        //        }
-        //    }
-        //}
+            while (true)
+            {
+                Output("If you want to add new employee press 1, to read database please press 2, to exit press 0");
+                string userChoice = $"{Console.ReadLine().Trim()}";
+                switch (Convert.ToInt32(userChoice))
+                {
+                    case 1:
+                        {
+                            Output("Please enter full name of emloyee: ");
+                            string s = Console.ReadLine();
+                            WriteEmployee(s);
+                            continue;
+                        }
+                    case 2:
+                        {
+                            Output("Current employees: ");
+                            Output(ReadFromFile(fileName));
+                            continue;
+                        }
+                    case 0:
+                        {
+                            Output("Program executed by user");
+                            break;
+                        }
+
+                }
+                if (Convert.ToInt32(userChoice) == 0)
+                {
+                    break;
+                }
+            }
+            Console.ReadKey();
+        }
     }
 }
