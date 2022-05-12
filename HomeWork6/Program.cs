@@ -5,6 +5,7 @@ namespace HomeWork6
 {
     internal class Program
     {
+        static string fileName = "database.txt";
         public static void Output(string text)
         {
             Console.WriteLine(text);
@@ -26,23 +27,35 @@ namespace HomeWork6
         }
         public static void WriteEmployee(string newEmployee)
         {
-            string fileName = "datebase.txt";
             WriteToFile(fileName, newEmployee);
         }
         static void Main(string[] args)
         {
-            string fileName = "database.txt";
-
             while (true)
             {
+                int ID=0;
                 Output("If you want to add new employee press 1, to read database please press 2, to exit press 0");
                 string userChoice = $"{Console.ReadLine().Trim()}";
                 switch (Convert.ToInt32(userChoice))
                 {
                     case 1:
                         {
+                            string s = String.Empty;
+                            ID++;
+                            s += $"{ID}#";
+                            DateTime dateTime = DateTime.Now;
+                            s += $"{dateTime}#";
                             Output("Please enter full name of emloyee: ");
-                            string s = Console.ReadLine();
+                            s += $"{Console.ReadLine()}#";
+                            Output("Please enter age of new employee: ");
+                            s += $"{Console.ReadLine()}#";
+                            Output("Please enter height of new employee: ");
+                            s += $"{Console.ReadLine()}#";
+                            Output("Enter date of birth: DD.MM.YYYY");
+                            DateTime date = Convert.ToDateTime(Console.ReadLine());
+                            s += $"{date.ToShortDateString()}#";
+                            Output("Please enter place of birth: ");
+                            s += $"{Console.ReadLine()}";
                             WriteEmployee(s);
                             continue;
                         }
