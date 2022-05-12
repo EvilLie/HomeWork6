@@ -14,15 +14,16 @@ namespace HomeWork6
         {
             File.AppendAllText(fileName, $"{s}\n");
         }
-        public static string ReadFromFile(string fileName)
+         public static string[] ReadArrayFromFile(string fileName)
         {
             if (File.Exists(fileName))
             {
-                return File.ReadAllText(fileName);
+                return File.ReadAllLines(fileName);
             }
             else
             {
-                return "";
+                // возвращаем пустой массив, если файла нет
+                return new string[0];
             }
         }
         public static void WriteEmployee(string newEmployee)
@@ -43,7 +44,7 @@ namespace HomeWork6
                         {
                             string s = String.Empty;
                             ID++;
-                            s += $"{ID}#";
+                            s += $"{ID,3}#";
                             DateTime dateTime = DateTime.Now;
                             s += $"{dateTime}#";
                             Output("Please enter full name of emloyee: ");
@@ -63,7 +64,16 @@ namespace HomeWork6
                     case 2:
                         {
                             Output("Current employees: ");
-                            Output(ReadFromFile(fileName));
+                            string[] employeesArray = ReadArrayFromFile(fileName);
+                            foreach(string employeeInfo in employeesArray)
+                            {
+                                string[] items = employeeInfo.Split('#');
+                                foreach(string item in items)
+                                {
+                                    Console.Write($"{item} ");
+                                }
+                                Console.Write("\n");
+                            }
                             continue;
                         }
                     case 0:
