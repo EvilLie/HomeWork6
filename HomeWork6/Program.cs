@@ -31,9 +31,10 @@ namespace HomeWork6
         }
         static void Main(string[] args)
         {
+            int ID=0;
             while (true)
             {
-                int ID=0;
+                
                 Output("If you want to add new employee press 1, to read database please press 2, to exit press 0");
                 string userChoice = $"{Console.ReadLine().Trim()}";
                 switch (Convert.ToInt32(userChoice))
@@ -43,19 +44,19 @@ namespace HomeWork6
                             string s = String.Empty;
                             ID++;
                             s += $"{ID}#";
-                            DateTime dateTime = DateTime.Now;
-                            s += $"{dateTime}#";
-                            Output("Please enter full name of emloyee: ");
-                            s += $"{Console.ReadLine()}#";
-                            Output("Please enter age of new employee: ");
-                            s += $"{Console.ReadLine()}#";
-                            Output("Please enter height of new employee: ");
-                            s += $"{Console.ReadLine()}#";
-                            Output("Enter date of birth: DD.MM.YYYY");
-                            DateTime date = Convert.ToDateTime(Console.ReadLine());
-                            s += $"{date.ToShortDateString()}#";
-                            Output("Please enter place of birth: ");
-                            s += $"{Console.ReadLine()}";
+                            //DateTime dateTime = DateTime.Now;
+                            //s += $"{dateTime}#";
+                            //Output("Please enter full name of emloyee: ");
+                            //s += $"{Console.ReadLine()}#";
+                            //Output("Please enter age of new employee: ");
+                            //s += $"{Console.ReadLine()}#";
+                            //Output("Please enter height of new employee: ");
+                            //s += $"{Console.ReadLine()}#";
+                            //Output("Enter date of birth: DD.MM.YYYY");
+                            //DateTime date = Convert.ToDateTime(Console.ReadLine());
+                            //s += $"{date.ToShortDateString()}#";
+                            //Output("Please enter place of birth: ");
+                            //s += $"{Console.ReadLine()}";
                             WriteEmployee(s);
                             continue;
                         }
